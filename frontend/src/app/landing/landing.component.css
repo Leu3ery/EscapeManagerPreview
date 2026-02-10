@@ -405,6 +405,89 @@
   }
 
   .device-frame.multi {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .top-nav {
+    background: transparent;
+    border-bottom: none;
+  }
+
+  .nav-inner {
+    padding: 12px;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .nav-actions {
+    width: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .lang-switch {
+    width: auto;
+  }
+
+  .hero {
+    padding: 72px 0 56px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .feature-grid {
+    gap: 28px;
+  }
+
+  .step-grid {
+    gap: 16px;
+  }
+
+  .step-card {
+    padding: 20px;
+  }
+
+  .device-frame {
+    padding: 12px;
+  }
+
+  .device-frame.phone {
+    max-width: 100%;
+  }
+
+  .nfc-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .cta-grid,
+  .demo-grid {
+    gap: 28px;
+  }
+
+  .demo-form {
+    padding: 24px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
   }
 }
