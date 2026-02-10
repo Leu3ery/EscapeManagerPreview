@@ -1,0 +1,58 @@
+<div class="admin-page">
+  <header class="admin-header">
+    <div>
+      <h1>Leads</h1>
+      <p>All demo requests from the landing page.</p>
+    </div>
+    <button
+      class="btn"
+      type="button"
+      (click)="fetchLeads()"
+      [disabled]="loading || !token"
+      *ngIf="token"
+    >
+      {{ loading ? 'Loading...' : 'Refresh' }}
+    </button>
+  </header>
+
+  <div class="login-card" *ngIf="!token">
+    <h2>Admin login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <label>
+        Username
+        <input name="username" ngModel required type="text" autocomplete="username">
+      </label>
+      <label>
+        Password
+        <input name="password" ngModel required type="password" autocomplete="current-password">
+      </label>
+      <button class="btn primary" type="submit" [disabled]="loginLoading">
+        {{ loginLoading ? 'Signing in...' : 'Sign in' }}
+      </button>
+      <div class="state error" *ngIf="loginError">{{ loginError }}</div>
+    </form>
+  </div>
+
+  <div class="state" *ngIf="loading">Loading leads...</div>
+  <div class="state error" *ngIf="error">{{ error }}</div>
+
+  <div class="table" *ngIf="!loading && !error && token">
+    <div class="table-row table-head">
+      <div>ID</div>
+      <div>Name</div>
+      <div>Email</div>
+      <div>Company</div>
+      <div>Lang</div>
+      <div>Date</div>
+    </div>
+    <div class="table-row" *ngFor="let lead of leads">
+      <div>{{ lead.id }}</div>
+      <div>{{ lead.name }}</div>
+      <div>{{ lead.email }}</div>
+      <div>{{ lead.company }}</div>
+      <div>{{ lead.lang.toUpperCase() }}</div>
+      <div>{{ lead.created_at | date: 'medium' }}</div>
+    </div>
+    <div class="state" *ngIf="leads.length === 0">No leads yet.</div>
+  </div>
+</div>

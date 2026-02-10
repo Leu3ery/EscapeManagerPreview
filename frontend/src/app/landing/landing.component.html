@@ -1,0 +1,194 @@
+<div class="page">
+  <header class="top-nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="brand-mark">EM</span>
+        <span class="brand-name">Escape Manager</span>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <button
+            *ngFor="let l of langs"
+            type="button"
+            [class.active]="l === lang"
+            (click)="setLang(l)"
+          >
+            {{ l.toUpperCase() }}
+          </button>
+        </div>
+        <a class="btn primary" href="#demo">{{ copy.nav.cta }}</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">{{ copy.hero.eyebrow }}</div>
+        <h1>{{ copy.hero.title }}</h1>
+        <p class="subtitle">{{ copy.hero.subtitle }}</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#demo">{{ copy.hero.ctaPrimary }}</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="device-frame laptop">
+          <img
+            src="assets/screens/dashboard.png"
+            alt="Escape Manager dashboard"
+            loading="lazy"
+            class="zoomable"
+            (click)="openLightbox('assets/screens/dashboard.png', 'Escape Manager dashboard')"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <h2>{{ copy.how.title }}</h2>
+      </div>
+      <div class="step-grid">
+        <div class="step-card" *ngFor="let step of howSteps; let i = index">
+          <div class="step-media">
+            <img
+              [src]="'assets/screens/' + howImages[i]"
+              [alt]="'Step ' + (i + 1)"
+              loading="lazy"
+              class="zoomable"
+              (click)="openLightbox('assets/screens/' + howImages[i], 'Step ' + (i + 1))"
+            >
+          </div>
+          <div class="step-number">0{{ i + 1 }}</div>
+          <p>{{ step }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" *ngFor="let section of featureSections">
+    <div class="container feature-grid" [class.reverse]="section.reverse">
+      <div class="feature-copy">
+        <h2>{{ copy.features[section.key].title }}</h2>
+        <p>{{ copy.features[section.key].text }}</p>
+      </div>
+      <div class="feature-media">
+        <div
+          class="device-frame"
+          [class.phone]="section.frame === 'phone'"
+          [class.multi]="section.images.length > 1"
+        >
+          <img
+            *ngFor="let img of section.images"
+            [src]="'assets/screens/' + img"
+            [alt]="copy.features[section.key].title"
+            loading="lazy"
+            class="zoomable"
+            (click)="openLightbox('assets/screens/' + img, copy.features[section.key].title)"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-grid nfc-grid">
+        <div class="feature-copy">
+          <h2>{{ copy.features.nfc.title }}</h2>
+          <p>{{ copy.features.nfc.text }}</p>
+        </div>
+        <div class="feature-media">
+          <div class="nfc-cards">
+            <div class="device-frame phone" *ngFor="let img of nfcImages">
+              <img
+                [src]="'assets/screens/' + img"
+                alt="NFC card preview"
+                loading="lazy"
+                class="zoomable"
+                (click)="openLightbox('assets/screens/' + img, 'NFC card preview')"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta" id="pilot">
+    <div class="container cta-grid">
+      <div class="cta-copy">
+        <h2>{{ copy.pilot.title }}</h2>
+        <p>{{ copy.pilot.text }}</p>
+        <a class="btn primary" href="#demo">{{ copy.pilot.button }}</a>
+      </div>
+      <div class="cta-media">
+        <div class="device-frame laptop">
+          <img
+            src="assets/screens/dashboard.png"
+            alt="Escape Manager dashboard"
+            loading="lazy"
+            class="zoomable"
+            (click)="openLightbox('assets/screens/dashboard.png', 'Escape Manager dashboard')"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="container demo-grid">
+      <div class="demo-copy">
+        <h2>{{ copy.form.title }}</h2>
+        <p>{{ copy.form.note }}</p>
+      </div>
+      <div class="demo-form">
+        <form *ngIf="!submitted" #demoForm="ngForm" (ngSubmit)="onSubmit(demoForm)">
+          <label>
+            {{ copy.form.name }}
+            <input name="name" ngModel required type="text" placeholder="{{ copy.form.name }}">
+          </label>
+          <label>
+            {{ copy.form.email }}
+            <input name="email" ngModel required type="email" placeholder="{{ copy.form.email }}">
+          </label>
+          <label>
+            {{ copy.form.company }}
+            <input name="company" ngModel required type="text" placeholder="{{ copy.form.company }}">
+          </label>
+          <button class="btn primary" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? '...' : copy.form.submit }}
+          </button>
+          <div class="form-error" *ngIf="submitError">{{ submitError }}</div>
+        </form>
+        <div class="demo-success" *ngIf="submitted">
+          {{ copy.form.success }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>Escape Manager</div>
+      <div class="footer-note">{{ copy.footer.note }}</div>
+    </div>
+  </footer>
+</div>
+
+<div
+  class="lightbox"
+  *ngIf="lightboxImage"
+  role="dialog"
+  aria-modal="true"
+  (click)="closeLightbox()"
+>
+  <button class="lightbox-close" type="button" (click)="closeLightbox()">✕</button>
+  <img
+    [src]="lightboxImage"
+    [alt]="lightboxAlt"
+    (click)="$event.stopPropagation()"
+  >
+</div>
