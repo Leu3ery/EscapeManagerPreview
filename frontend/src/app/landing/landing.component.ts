@@ -253,7 +253,7 @@ type FeatureKey = keyof (typeof COPY)['ua']['features'];
 })
 export class LandingComponent implements OnInit {
   readonly langs: Lang[] = ['ua', 'de', 'en'];
-  lang: Lang = 'ua';
+  lang: Lang = 'en';
   submitted = false;
   isSubmitting = false;
   submitError = '';
