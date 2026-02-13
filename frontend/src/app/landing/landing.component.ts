@@ -35,6 +35,10 @@ const COPY = {
         title: 'База клієнтів та історія відвідувань',
         text: 'Зберігайте контактні дані, бачте кількість ігор, загальний час і останній візит кожного клієнта.',
       },
+      campaigns: {
+        title: 'Повернення неактивних клієнтів через email-кампанії',
+        text: 'Відстежуйте клієнтів, які давно не повертались, формуйте сегмент і запускайте автоматичну розсилку для win-back.',
+      },
       account: {
         title: 'Особистий кабінет гравця',
         text: 'Гравці бачать статистику, історію і досягнення — це мотивує повертатися знову.',
@@ -113,6 +117,10 @@ const COPY = {
         title: 'Kundenbasis & Besuchshistorie',
         text: 'Speichern Sie Kontaktdaten und sehen Sie Spiele, Gesamtzeit und letzten Besuch pro Kunde.',
       },
+      campaigns: {
+        title: 'Inaktive Kunden mit E-Mail-Kampagnen zurückholen',
+        text: 'Erkennen Sie Kunden mit langer Pause, segmentieren Sie sie und starten Sie automatische Win-back-Kampagnen.',
+      },
       account: {
         title: 'Persönliches Spieler-Konto',
         text: 'Spieler sehen Statistik, Historie und Erfolge — das erhöht die Wiederkehr.',
@@ -190,6 +198,10 @@ const COPY = {
       clients: {
         title: 'Client database & visit history',
         text: 'Store contacts and see games played, total time, and last visit for each client.',
+      },
+      campaigns: {
+        title: 'Bring inactive clients back with email campaigns',
+        text: 'Identify clients who have not returned in a while, build a segment, and run automated win-back campaigns.',
       },
       account: {
         title: 'Personal player account',
@@ -274,6 +286,7 @@ export class LandingComponent implements OnInit {
   }> = [
     { key: 'sessions', images: ['sessions_fullscrean.png'] },
     { key: 'clients', images: ['clients.png'], reverse: true },
+    { key: 'campaigns', images: ['email_campaigns.png'] },
     { key: 'account', images: ['user_account1.png', 'user_account2.png'], frame: 'phone' },
     { key: 'fields', images: ['registrations_fields.png'], reverse: true },
     { key: 'templates', images: ['templates.png'] },
